@@ -1,0 +1,164 @@
+user guvi2
+db.zenclass.insertMany(
+[{
+  "_id": {
+    "$oid": "65da0b004388168508541ca8"
+  },
+  "id": "1",
+  "users": "Arun",
+  "codekata": 250,
+  "attendance": "present",
+  "topics": "node.js",
+  "tasks": "completed",
+  "company_drives": "zoho",
+  "mentors": "nagarajan chandramohan"
+},
+{
+  "_id": {
+    "$oid": "65da0b004388168508541ca9"
+  },
+  "id": "2",
+  "users": "Aadhi",
+  "codekata": 200,
+  "attendance": "present",
+  "topics": "java",
+  "tasks": "completed",
+  "company_drives": "Flipkart",
+  "mentors": "chandramohan"
+},
+{
+  "_id": {
+    "$oid": "65da0b004388168508541caa"
+  },
+  "id": "3",
+  "users": "Sriram",
+  "codekata": 190,
+  "attendance": "present",
+  "topics": "C++",
+  "tasks": "completed",
+  "company_drives": "Google",
+  "mentors": "nagaraja"
+},
+{
+  "_id": {
+    "$oid": "65da0b004388168508541cab"
+  },
+  "id": "5",
+  "users": "Mathi",
+  "codekata": 260,
+  "attendance": "present",
+  "topics": "React.js",
+  "tasks": "completed",
+  "company_drives": "Meta",
+  "mentors": "Barani chandramohan"
+},
+{
+  "_id": {
+    "$oid": "65da0b004388168508541cac"
+  },
+  "id": "6",
+  "users": "arunprakash",
+  "codekata": 250,
+  "attendance": "present",
+  "topics": "node.js",
+  "tasks": "completed",
+  "company_drives": "Meta",
+  "mentors": "nagarajan chandramohan"
+},
+{
+  "_id": {
+    "$oid": "65da0b004388168508541cad"
+  },
+  "id": "7",
+  "users": "ari",
+  "codekata": 50,
+  "attendance": "absent",
+  "topics": "c ++",
+  "tasks": "Pending",
+  "company_drives": "Caps solution",
+  "mentors": "Kokila"
+},
+{
+  "_id": {
+    "$oid": "65da0b004388168508541cae"
+  },
+  "id": "8",
+  "users": "Saresh",
+  "codekata": 10,
+  "attendance": "absent",
+  "topics": "Javascript",
+  "tasks": "completed",
+  "company_drives": "theecode",
+  "mentors": "Kokila"
+},
+{
+  "_id": {
+    "$oid": "65da0b004388168508541caf"
+  },
+  "id": "9",
+  "users": "Thilagan",
+  "codekata": 0,
+  "attendance": "absent",
+  "topics": "Html",
+  "tasks": "Pending",
+  "company_drives": "Oasys",
+  "mentors": "dhamopo"
+},
+{
+  "_id": {
+    "$oid": "65da0b004388168508541cb0"
+  },
+  "id": "10",
+  "users": "siva",
+  "codekata": 250,
+  "attendance": "present",
+  "topics": "java",
+  "tasks": "completed",
+  "company_drives": "Amazon",
+  "mentors": "nagarajan chandramohan"
+}])
+
+
+
+
+
+
+
+**************************************************Task Query******************************************************************
+
+1]Find all the topics and tasks which are thought in the month of October
+
+db.zenclass.find({},{tasks:1,topics:1})
+
+__________________________________________________________________________________________________
+2]Find all the company drives which appeared between 15 oct-2020 and 31-oct-2020
+
+db.zenclass.find({},{company_drive:1}
+_______________________________________________________________________________________________
+3]Find all the company drives and students who are appeared for the placement.
+
+db.zenclass.find({},{company_drive:1,tasks:1})
+__________________________________________________________________________________________________
+4]Find the number of problems solved by the user in codekata
+
+db.zenclass.aggregate( [
+
+    {
+      $group: { _id: "tasks", totalQuantity: { $sum: "$codekata" } }
+   }])
+____________________________________________________________________________________________________________
+5]Find all the mentors with who has the mentee's count more than 15
+
+db.zenclass.aggregate( [{
+      $match: { _id: "mentors" }
+   }])
+________________________________________________________________________________________________________________
+
+6]Find the number of users who are absent and task is not submitted  between 15 oct-2020 and 31-oct-2020
+
+db.zenclass.find({$and:[{attendance:{$eq:"absent"}},{tasks:{$eq:"Pending"}}]})
+___________________________********************Completed********************************___________________________
+
+
+
+
